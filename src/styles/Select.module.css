@@ -1,0 +1,63 @@
+.selectContainer {
+    width: 220px;
+    margin: 20px auto;
+    font-family: 'Segoe UI', sans-serif;
+    position: relative;
+    user-select: none;
+}
+
+.selectHeader {
+    background-color: #1a1a1a;
+    padding: 12px 14px;
+    border: 1px solid #3d3d3d;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #f0f0f0;
+    letter-spacing: 0.5px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.selectHeader:hover {
+    background-color: #292929;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+}
+
+.optionsList {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #121212;
+    border: 1px solid #333;
+    border-radius: 6px;
+    margin-top: 4px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.9);
+    z-index: 10;
+    overflow: hidden;
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+.optionItem {
+    padding: 12px 14px;
+    cursor: pointer;
+    color: #e0e0e0;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.optionItem:hover {
+    background-color: rgba(255, 61, 0, 0.63);
+    color: #ffffff;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
