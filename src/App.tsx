@@ -1,6 +1,6 @@
 import './App.css'
 
-import {Select} from "./components/Options.tsx";
+import {Select} from "./components/Select.tsx";
 
 function App() {
 

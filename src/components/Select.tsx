@@ -7,6 +7,7 @@ import {Options} from "./Options.tsx";
 export const Select = (props: SelectPropsType) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectValue, setSelectValue] = useState(!props.defaultValue ? "Select" : props.defaultValue);
+    console.log(isOpen);
 
     const onClickHandler = () => {
         setIsOpen(!isOpen);
@@ -22,8 +23,8 @@ export const Select = (props: SelectPropsType) => {
 
     return (
         <div className={s.selectContainer}>
-            <input value={selectValue} autoFocus onBlur={onBlurHandler} className={s.selectHeader}
-                   onClick={onClickHandler}/>
+            <h3 tabIndex={1} onBlur={onBlurHandler} className={s.selectHeader}
+                onClick={onClickHandler}>{selectValue}</h3>
             {isOpen && <Options selectNewElement={selectNewElement} users={props.users}/>}
         </div>
     );
