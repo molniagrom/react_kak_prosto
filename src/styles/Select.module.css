@@ -1,3 +1,4 @@
+/* src/styles/Select.module.css */
 .selectContainer {
     width: 220px;
     margin: 20px auto;
@@ -17,6 +18,11 @@
     letter-spacing: 0.5px;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    outline: none; /* Убираем стандартную обводку фокуса */
+}
+
+.selectHeader:focus {
+    box-shadow: 0 0 0 3px rgba(246, 59, 17, 0.5); /* Добавляем свою обводку при фокусе */
 }
 
 .selectHeader:hover {
@@ -48,6 +54,12 @@
 
 .optionItem:hover {
     background-color: rgba(246, 59, 17, 0.7);
+    color: #ffffff;
+}
+
+/* Новый класс для подсветки выделенного элемента */
+.highlighted {
+    background-color: rgba(246, 59, 17, 0.9); /* Более насыщенный цвет для выделения */
     color: #ffffff;
 }
 
