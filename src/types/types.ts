@@ -3,12 +3,15 @@
 export type UserType = {
     id: string;
     title: string;
+    residents?: string;
 }
 
 export type SelectPropsType = {
     users: UserType[]
     defaultValue?: string
 }
+
+
 
 export type OptionsPropsType = {
     users: UserType[]

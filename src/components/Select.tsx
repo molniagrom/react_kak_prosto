@@ -1,85 +1,94 @@
-import type {SelectPropsType} from "../types/types.ts"; // Импортируем тип для пропсов компонента Select
-import {useEffect, useState} from "react"; // Импортируем хуки React: useState для управления состоянием и useEffect для побочных эффектов
-import s from "../styles/Select.module.css"; // Импортируем CSS-модуль для стилизации компонента Select
-import {Options} from "./Options.tsx"; // Импортируем дочерний компонент Options, который отображает список элементов
+import type {SelectPropsType} from "../types/types.ts";
+import {useEffect, useState} from "react";
+import s from "../styles/Select.module.css";
+import {Counter} from "./Counter.tsx";
+import {SelectIn} from "./SelectIn.tsx";
+import * as React from "react";
 
-export const Select = (props: SelectPropsType) => { // Объявляем функциональный компонент Select, который принимает пропсы типа SelectPropsType
-    const [isOpen, setIsOpen] = useState(false); // Состояние isOpen: булево значение, true если список открыт, false если закрыт. Изначально false (закрыт).
-    const [selectValue, setSelectValue] = useState(!props.defaultValue ? "Select" : props.defaultValue); // Состояние selectValue: строка, которая отображается как текущее выбранное значение. Если defaultValue не передан, то "Select", иначе defaultValue.
-    const [highlightedIndex, setHighlightedIndex] = useState(-1); // Состояние highlightedIndex: число, индекс элемента в списке Options, который сейчас "подсвечен" (выделен для выбора стрелками). -1 означает, что ни один элемент не подсвечен.
+export const Select = (props: SelectPropsType) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [selectValue, setSelectValue] = useState(
+        !props.defaultValue ? "Select" : props.defaultValue
+    );
+    const [highlightedIndex, setHighlightedIndex] = useState(-1);
 
-    // Хук useEffect срабатывает при изменении isOpen
     useEffect(() => {
-        if (!isOpen) { // Если список закрывается (isOpen становится false)
-            setHighlightedIndex(-1); // Сбрасываем highlightedIndex в -1, чтобы при следующем открытии не было заранее подсвеченных элементов
+        if (!isOpen) {
+            setHighlightedIndex(-1);
         }
-    }, [isOpen]); // Зависимость: эффект сработает только когда изменится значение isOpen
+    }, [isOpen]);
 
-    const onClickHandler = () => { // Функция-обработчик клика по заголовку Select
-        setIsOpen(!isOpen); // Переключает состояние isOpen на противоположное (открывает/закрывает список)
+    const onClickHandler = () => {
+        setIsOpen(!isOpen);
     };
 
-    const onBlurHandler = () => { // Функция-обработчик потери фокуса заголовком Select
-        // Устанавливаем небольшую задержку, чтобы успеть обработать onMouseDown на опциях.
-        // Иначе onBlur сработает раньше, чем onClickOption, и список закроется, не дав выбрать элемент мышью.
+    const onBlurHandler = () => {
         setTimeout(() => {
-            setIsOpen(false); // Закрывает список после небольшой задержки
+            setIsOpen(false);
         }, 100);
     };
 
-    const selectNewElement = (title: string) => { // Функция, которая вызывается компонентом Options при выборе нового элемента
-        setSelectValue(title); // Устанавливает переданный title как новое выбранное значение
-        setIsOpen(false); // Закрывает список после выбора элемента
+    const selectNewElement = (title: string) => {
+        setSelectValue(title);
+        setIsOpen(false);
     };
 
-    const onKeyDownHandler = (e: React.KeyboardEvent<HTMLHeadingElement>) => { // Функция-обработчик нажатий клавиш, когда заголовок Select в фокусе
-        if (e.key === "ArrowDown") { // Если нажата клавиша "стрелка вниз"
-            e.preventDefault(); // Предотвращает стандартное поведение браузера (например, прокрутку страницы)
-            if (!isOpen) { // Если список закрыт
-                setIsOpen(true); // Открываем список
+    const onKeyDownHandler = (e: React.KeyboardEvent<HTMLHeadingElement>) => {
+        if (e.key === "ArrowDown") {
+            e.preventDefault();
+            if (!isOpen) {
+                setIsOpen(true);
             }
-            setHighlightedIndex(prevIndex => { // Обновляем highlightedIndex
-                const nextIndex = prevIndex + 1; // Увеличиваем индекс на 1
-                return nextIndex >= props.users.length ? 0 : nextIndex; // Если достигли конца списка, переходим к первому элементу, иначе к следующему
+            setHighlightedIndex((prevIndex) => {
+                const nextIndex = prevIndex + 1;
+                return nextIndex >= props.users.length ? 0 : nextIndex;
             });
-        } else if (e.key === "ArrowUp") { // Если нажата клавиша "стрелка вверх"
-            e.preventDefault(); // Предотвращает стандартное поведение браузера
-            if (!isOpen) { // Если список закрыт
-                setIsOpen(true); // Открываем список
+        } else if (e.key === "ArrowUp") {
+            e.preventDefault();
+            if (!isOpen) {
+                setIsOpen(true);
             }
-            setHighlightedIndex(prevIndex => { // Обновляем highlightedIndex
-                const nextIndex = prevIndex - 1; // Уменьшаем индекс на 1
-                return nextIndex < 0 ? props.users.length - 1 : nextIndex; // Если достигли начала списка, переходим к последнему элементу, иначе к предыдущему
+            setHighlightedIndex((prevIndex) => {
+                const nextIndex = prevIndex - 1;
+                return nextIndex < 0 ? props.users.length - 1 : nextIndex;
             });
-        } else if (e.key === "Enter") { // Если нажата клавиша "Enter"
-            if (isOpen && highlightedIndex !== -1) { // Если список открыт и есть подсвеченный элемент
-                selectNewElement(props.users[highlightedIndex].title); // Выбираем подсвеченный элемент
-            } else { // Если список закрыт или нет подсвеченного элемента
-                setIsOpen(!isOpen); // Открываем/закрываем список
+        } else if (e.key === "Enter") {
+            if (isOpen && highlightedIndex !== -1) {
+                selectNewElement(props.users[highlightedIndex].title);
+            } else {
+                setIsOpen(!isOpen);
             }
-        } else if (e.key === "Escape") { // Если нажата клавиша "Escape"
-            setIsOpen(false); // Закрываем список
+        } else if (e.key === "Escape") {
+            setIsOpen(false);
         }
     };
 
-    return ( // JSX разметка компонента Select
-        <div className={s.selectContainer}> {/* Контейнер для всего компонента Select */}
-            <h3
-                tabIndex={0} // Делает заголовок фокусируемым с клавиатуры (например, по Tab)
-                onBlur={onBlurHandler} // Обработчик потери фокуса
-                className={s.selectHeader} // Применяет стили из CSS-модуля
-                onClick={onClickHandler} // Обработчик клика
-                onKeyDown={onKeyDownHandler} // Обработчик нажатия клавиш
-            >
-                {selectValue} {/* Отображает текущее выбранное значение */}
-            </h3>
-            {isOpen && ( // Условный рендеринг: компонент Options отображается только если isOpen равно true
-                <Options
-                    selectNewElement={selectNewElement} // Передаем функцию для выбора нового элемента
-                    users={props.users} // Передаем массив пользователей (опций)
-                    highlightedIndex={highlightedIndex} // Передаем индекс подсвеченного элемента
-                />
-            )}
+
+    const [counter, setCounter] = useState(0);
+
+    const onClickCounter = () => {
+        setCounter(counter + 1)
+    }
+
+   const RealSelect = React.memo(SelectIn)
+
+    return (
+        <div className={s.selectContainer}>
+
+            <Counter counter={counter} onClickCounter={onClickCounter}/>
+
+            <RealSelect
+                isOpen={isOpen}
+                onBlurHandler={onBlurHandler}
+                onClickHandler={onClickHandler}
+                onKeyDownHandler={onKeyDownHandler}
+                children={selectValue}
+                selectNewElement={selectNewElement}
+                users={props.users}
+                highlightedIndex={highlightedIndex}
+                className={s.selectHeader}
+            />
+
         </div>
     );
 };
