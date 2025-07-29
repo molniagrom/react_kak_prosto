@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Select } from "../components/Select";
+import { Select } from "../components/select/Select.tsx";
 
 // ✅ Общие «сырые» данные пользователей
 const rawUsers = [

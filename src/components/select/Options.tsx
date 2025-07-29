@@ -1,5 +1,5 @@
-import s from "../styles/Select.module.css"; // Импортируем CSS-модуль для стилизации компонента Options
-import type {OptionsPropsType} from "../types/types.ts"; // Импортируем тип для пропсов компонента Options
+import s from "../../styles/Select.module.css"; // Импортируем CSS-модуль для стилизации компонента Options
+import type {OptionsPropsType} from "../../types/types.ts"; // Импортируем тип для пропсов компонента Options
 
 export const Options = ({users, selectNewElement, highlightedIndex}: OptionsPropsType) => { // Объявляем функциональный компонент Options, который принимает пропсы типа OptionsPropsType (деструктурируем их сразу)
 

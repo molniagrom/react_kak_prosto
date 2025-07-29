@@ -1,5 +1,5 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
-import {Example1, Example2, Example3} from "../components/UseMemo.tsx";
+import {Example1, Example2, Example3} from "../components/use/UseMemo.tsx";
 
 const meta: Meta<typeof Example1> = {
     title: 'Examples/UseMemoExample',

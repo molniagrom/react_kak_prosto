@@ -2,7 +2,7 @@
 
 
 import type {Meta, StoryObj} from "@storybook/react-vite";
-import {UseState} from "../components/UseState.tsx";
+import {UseState} from "../components/use/UseState.tsx";
 
 const meta: Meta<typeof UseState> = {
     title: 'Example/UseState',

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import {LikeWatchExample, SetTimeoutExample, SimpleExample} from '../components/UseEffect';
+import {SetTimeoutExample, SimpleExample} from '../components/use/UseEffect.tsx';
 
 const meta: Meta<typeof SimpleExample> = {
     title: 'Examples/useEffectExample',
@@ -19,6 +19,3 @@ export const SetTimeout: Story = {
     render: () => <SetTimeoutExample />,
 };
 
-export const LikeWatch: Story = {
-    render: () => <LikeWatchExample />,
-};

@@ -1,7 +1,7 @@
-import type {SelectPropsType} from "../types/types.ts";
+import type {SelectPropsType} from "../../types/types.ts";
 import {useEffect, useState} from "react";
-import s from "../styles/Select.module.css";
-import {Counter} from "./Counter.tsx";
+import s from "../../styles/Select.module.css";
+import {Counter} from "../Counter.tsx";
 import {SelectIn} from "./SelectIn.tsx";
 import * as React from "react";
 

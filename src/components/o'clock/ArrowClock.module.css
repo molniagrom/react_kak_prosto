@@ -1,0 +1,60 @@
+.circle {
+    border-radius: 50%;
+    background-color: #747bff;
+    width: 300px;
+    height: 300px;
+    position: relative;
+    transform: rotate(-90deg);
+}
+
+.arrow{
+    width: 45%;
+    height: 4px;
+    background-color: #e81c1c;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: left;
+    transition: transform 0.05s linear;
+    z-index: 2;
+}
+
+.minutes {
+    background-color: aqua;
+}
+
+.second {
+    background-color: chartreuse;
+}
+
+.hours {
+    background-color: coral;
+}
+
+.hour {
+    position: absolute;
+    background-color: #1a1a1a;
+    height: 20px;
+    width: 7px;
+    transform: rotate(-90deg);
+}
+
+.top{
+    top: 5%;
+    left: 50%;
+}
+
+.left{
+    top: 45%;
+    left: 5%;
+}
+
+.bottom{
+    bottom: 5%;
+    left: 50%;
+}
+
+.right {
+    right: 5%;
+    top: 45%;
+}
