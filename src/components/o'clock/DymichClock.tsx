@@ -1,10 +1,8 @@
 import {useEffect, useState} from "react";
-import {ArrowClock} from "./ArrowClock.tsx";
 
 const get2digitsString = (number: number) => number < 10 ? `0${number}` : number;
 
 export const DymichClock = () => {
-    const [circle, setCircle] = useState<boolean>(false);
     const [date, setDate] = useState(new Date());
 
     useEffect(() => {
@@ -19,10 +17,7 @@ export const DymichClock = () => {
 
     return (
         <div>
-            <button onClick={() => setCircle(!circle)}>switch</button>
             <br/>
-            {circle
-                ?
                 <>
                     <span>{get2digitsString(date.getHours())}</span>
                     :
@@ -30,11 +25,6 @@ export const DymichClock = () => {
                     :
                     <span>{get2digitsString(date.getSeconds())}</span>
                 </>
-                : <ArrowClock
-                    hours={date.getHours()}
-                    minutes={date.getMinutes()}
-                    seconds={date.getSeconds()} />
-            }
         </div>
     );
 };
