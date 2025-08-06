@@ -1,5 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import {DymichClock} from "../components/o'clock/DymichClock.tsx";
+import type {Meta, StoryObj} from '@storybook/react-vite';
 import {MyClock} from "../components/o'clock/MyClock.tsx";
 import {Clock} from "../components/o'clock/Clock.tsx";
 
@@ -13,18 +12,26 @@ export default meta;
 
 type Story = StoryObj<typeof MyClock>;
 
-export const DigitalExample: Story = {
+export const DigitalClockExample: Story = {
     render: () => <Clock mode={"digital"} />,
 };
 
-export const AnalogExample: Story = {
+export const AnalogClockExample: Story = {
     render: () => <Clock mode={"analog"} />,
 };
+
+export const StolenAnalogClockExample: Story = {
+    render: () => <Clock mode={"stolen"} />,
+};
+
+// export const AnalogExample: Story = {
+//     render: () => <MyAnalogClock date={new Date()} />,
+// };
 
 export const MyClockExample: Story = {
     render: () => <MyClock />,
 };
 
-export const DymichClockExample: Story = {
-    render: () => <DymichClock />,
-};
+// export const DymichClockExample: Story = {
+//     render: () => <DymichClock date={new Date()} />,
+// };
